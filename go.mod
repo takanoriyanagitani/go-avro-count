@@ -1,6 +1,6 @@
 module github.com/takanoriyanagitani/go-avro-count
 
-go 1.23.3
+go 1.23.4
 
 require (
 	github.com/hamba/avro/v2 v2.27.0
