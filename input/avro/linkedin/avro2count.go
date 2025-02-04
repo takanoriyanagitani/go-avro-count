@@ -41,4 +41,15 @@ func ReaderToCount(r io.Reader) util.IO[ac.Count] {
 	}
 }
 
+func FilenameToCount(filename string) util.IO[ac.Count] {
+	return func(ctx context.Context) (ac.Count, error) {
+		f, e := os.Open(filename)
+		if nil != e {
+			return 0, e
+		}
+		defer f.Close()
+		return ReaderToCount(f)(ctx)
+	}
+}
+
 var StdinToAvroToCount util.IO[ac.Count] = ReaderToCount(os.Stdin)

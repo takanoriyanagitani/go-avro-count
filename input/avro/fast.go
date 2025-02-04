@@ -9,3 +9,5 @@ import (
 )
 
 var StdinToAvroToCount util.IO[ac.Count] = al.StdinToAvroToCount
+
+var FilenameToAvroToCount func(string) util.IO[ac.Count] = al.FilenameToCount
