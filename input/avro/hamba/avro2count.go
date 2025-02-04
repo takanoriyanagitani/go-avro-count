@@ -7,7 +7,6 @@ import (
 	"os"
 
 	ho "github.com/hamba/avro/v2/ocf"
-
 	ac "github.com/takanoriyanagitani/go-avro-count"
 	util "github.com/takanoriyanagitani/go-avro-count/util"
 )

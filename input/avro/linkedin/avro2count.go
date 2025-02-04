@@ -7,7 +7,6 @@ import (
 	"os"
 
 	lg "github.com/linkedin/goavro/v2"
-
 	ac "github.com/takanoriyanagitani/go-avro-count"
 	util "github.com/takanoriyanagitani/go-avro-count/util"
 )

@@ -6,11 +6,8 @@ import (
 	"log"
 
 	ac "github.com/takanoriyanagitani/go-avro-count"
-	util "github.com/takanoriyanagitani/go-avro-count/util"
-)
-
-import (
 	ia "github.com/takanoriyanagitani/go-avro-count/input/avro"
+	util "github.com/takanoriyanagitani/go-avro-count/util"
 )
 
 var stdin2avro2count util.IO[ac.Count] = ia.StdinToAvroToCount

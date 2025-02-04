@@ -4,9 +4,8 @@ package avro
 
 import (
 	ac "github.com/takanoriyanagitani/go-avro-count"
-	util "github.com/takanoriyanagitani/go-avro-count/util"
-
 	ah "github.com/takanoriyanagitani/go-avro-count/input/avro/hamba"
+	util "github.com/takanoriyanagitani/go-avro-count/util"
 )
 
 var StdinToAvroToCount util.IO[ac.Count] = ah.StdinToAvroToCount
