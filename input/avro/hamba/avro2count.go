@@ -21,7 +21,7 @@ func CountAvro(ctx context.Context, r io.Reader) (ac.Count, error) {
 
 	var cnt uint64 = 0
 	var buf map[string]any
-	var err error = nil
+	var err error
 	for dec.HasNext() {
 		clear(buf)
 		err = dec.Decode(&buf)
