@@ -4,6 +4,9 @@
 
 cat sample.d/sample.avro | ./avro2count
 
+export ENV_MULTI_THREAD=true
+export GOMAXPROCS=4
+
 printf \
 	'%s\n' \
 	./sample.d/sample.avro \

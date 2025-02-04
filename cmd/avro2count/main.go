@@ -32,6 +32,11 @@ var stdinAsFilenames util.IO[bool] = util.Bind(
 	util.Lift(strconv.ParseBool),
 ).Or(util.Of(false))
 
+var useMulti util.IO[bool] = util.Bind(
+	envVarByKey("ENV_MULTI_THREAD"),
+	util.Lift(strconv.ParseBool),
+).Or(util.Of(true))
+
 var filenames util.IO[iter.Seq[string]] = func(
 	_ context.Context,
 ) (iter.Seq[string], error) {
@@ -48,7 +53,19 @@ var filenames util.IO[iter.Seq[string]] = func(
 
 var stdin2names2count util.IO[ac.Count] = util.Bind(
 	filenames,
-	ia.FilenamesToCountSingle,
+	func(names iter.Seq[string]) util.IO[ac.Count] {
+		return util.Bind(
+			useMulti,
+			func(multi bool) util.IO[ac.Count] {
+				switch multi {
+				case true:
+					return ia.FilenamesToCountMultiDefault(names)
+				default:
+					return ia.FilenamesToCountSingle(names)
+				}
+			},
+		)
+	},
 )
 
 var stdin2avro2count util.IO[ac.Count] = ia.StdinToAvroToCount
