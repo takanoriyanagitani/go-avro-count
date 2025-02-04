@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 
 	ac "github.com/takanoriyanagitani/go-avro-count"
 	ia "github.com/takanoriyanagitani/go-avro-count/input/avro"
@@ -79,6 +80,10 @@ var stdin2count2stdout util.IO[util.Void] = util.Bind(
 func main() {
 	_, e := stdin2count2stdout(context.Background())
 	if nil != e {
+		var s string = e.Error()
+		if strings.Contains(s, "cannot create OCFReader: cannot read OCF header with invalid magic bytes:") {
+			log.Printf("hint: you need to set ENV_STDIN_AS_FILENAMES to use stdin as filenames\n")
+		}
 		log.Printf("%v\n", e)
 	}
 }
